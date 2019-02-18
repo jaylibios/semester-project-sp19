@@ -13,6 +13,9 @@
   - Use the following commands from the terminal
 
     =git add .=
+
     =git commit -m "environment changes and README update"=
+    
     =git tag part1=
+    
     =git push origin master --follow-tags=
