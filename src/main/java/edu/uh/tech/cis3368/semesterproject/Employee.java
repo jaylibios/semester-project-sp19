@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Employee {
     private int id;
     private String lastName;
-
+    private String firstName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +42,15 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(id, lastName);
+    }
+
+    @Basic
+    @Column(name = "FIRST_NAME", nullable = false, length = 24)
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

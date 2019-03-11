@@ -54,10 +54,11 @@ public class Main extends Application {
 
         springContext.getAutowireCapableBeanFactory().autowireBean(this);
 
-//        employeeRepository.hashCode();
-//        Employee employee = new Employee();
-//        employee.setLastName("Granger");
-//        employeeRepository.save(employee);
+        employeeRepository.hashCode();
+        Employee employee = new Employee();
+        employee.setLastName("Granger");
+        employee.setFirstName("Adam");
+        employeeRepository.save(employee);
     }
 
 
