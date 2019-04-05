@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,30 @@ public class MainController {
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
-    public void doManageEmployees(ActionEvent actionEvent) throws IOException {
+    public void setBtnManageEmployees(ActionEvent actionEvent) throws IOException {
+        /** Open in new window
+         *  Load FXML file
+         *  Set controller factory **/
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("employees.fxml"));
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
 
-
-
+        /** Changing scenes
+         *  Get stage from action event
+         *  Cast as a node -> get scene, get window
+         ** Don't have to load scene again, already in memory from main
+         *  Call FXML loader, get controller after setting scene
+         *  Set scene, store scene and then set scene in parent
+         ** DON'T KNOW WHERE '.getScene()' comes from **/
+        //Stage parent = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("employees.fxml"));
+        //Scene scene = new Scene(fxmlLoader.load());
+        //EmployeeController employeeController = fxmlLoader.getController();
+        //employeeController.setReturnScene(btnManageEmployees.getScene());
+        //parent.setScene(scene);
     }
 
 }

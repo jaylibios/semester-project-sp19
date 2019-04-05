@@ -48,6 +48,7 @@ public class Main extends Application {
     public void init() throws Exception {
         springContext = SpringApplication.run(Main.class);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
+        //Spring instantiates controller, not javafx - allows Spring to do dependencies
         fxmlLoader.setControllerFactory(springContext::getBean);
         root = fxmlLoader.load();
         super.init();
@@ -79,6 +80,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Employee Management System");
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
 

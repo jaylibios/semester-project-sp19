@@ -7,6 +7,9 @@ import java.util.Objects;
 public class Employee {
     private int id;
     private String lastName;
+    private String firstName;
+    private String phone;
+    private String email;
 
 
     @Id
@@ -28,6 +31,36 @@ public class Employee {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Basic
+    @Column(name = "FIRST_NAME", nullable = false, length = 24)
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Basic
+    @Column(name = "PHONE", nullable = false, length = 12)
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Basic
+    @Column(name = "EMAIL", nullable = false, length = 24)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
