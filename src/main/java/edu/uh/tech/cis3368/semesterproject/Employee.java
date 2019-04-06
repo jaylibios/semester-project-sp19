@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "EMPLOYEES", schema = "PUBLIC", catalog = "PROJECT")
 public class Employee {
     private int id;
     private String lastName;
@@ -66,13 +67,16 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return id == employee.id &&
-                Objects.equals(lastName, employee.lastName);
+        Employee that = (Employee) o;
+        return id == that.id &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName);
+        return Objects.hash(id, lastName, firstName, phone, email);
     }
 }
