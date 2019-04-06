@@ -1,61 +1,65 @@
 package edu.uh.tech.cis3368.semesterproject;
 
-import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-import javax.swing.text.TableView;
-import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-@Component
-public class EmployeeController {
-    //hold return scene
-    private Scene scene;
+@Controller
+public class EmployeeController implements Initializable {
+    public TableView<Employee> employeeTableView;
+    public TableColumn<Employee, String> colLastName;
+    public TableColumn<Employee, String> colFirstName;
+    public TableColumn<Employee, String> colPhone;
+    public TableColumn<Employee, String> colEmail;
 
-    private TableView employeeTableView;
-
-    @FXML
     public TextField lastName;
-    @FXML
     public TextField firstName;
-    @FXML
     public TextField phone;
-    @FXML
     public TextField email;
 
-    @FXML
-    private Button btnGoBack;
-    @FXML
-    private Button btnAddEmployee;
-    @FXML
-    private Button btnDeleteEmployee;
-    @FXML
-    private Button btnEditEmployee;
+    public Button btnAddEmployee;
+    public Button btnDeleteEmployee;
+    public Button btnEditEmployee;
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public void setReturnScene() {
-        this.scene = scene;
+    // Method that is called as soon as view loads
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
-    public void goBack() {
-        //get stage since same stage, set scene to stored scene
-        //if(scene == null)
-            //btnGoBack.getScene().getWindow().hide();
-        //else
-            //((Stage)btnGoBack.getScene().getWindow().setScene(scene));
+    // Button methods
+    public void setBtnAddEmployee(ActionEvent actionEvent) {
+        addEmployee();
     }
 
-    private void setBtnAddEmployee() {
-        //Employee employee = new Employee();
-        //employee.setLastName(lastName.getText());
-        //employee.setFirstName(firstName.getText());
-        //employee.setPhone(phone.getText());
-        //employee.setEmail(email.getText());
-    }
+    // Method to add new employee
+    private void addEmployee() {
+        Employee employee = new Employee();
 
+        // User setters from Employee class to set from TextFields
+        employee.setLastName(lastName.getText());
+        employee.setFirstName(firstName.getText());
+        employee.setPhone(phone.getText());
+        employee.setEmail(email.getText());
+
+        // Save and flush the information to repository
+        //employeeRepository.save(employee);
+
+        System.out.println("New Employee added.");
+    }
 }

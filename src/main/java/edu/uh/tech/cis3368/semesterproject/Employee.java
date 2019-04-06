@@ -11,7 +11,6 @@ public class Employee {
     private String phone;
     private String email;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
