@@ -3,15 +3,14 @@ package edu.uh.tech.cis3368.semesterproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.IOException;
 
 
@@ -20,6 +19,8 @@ public class MainController {
 
     @FXML
     private Button btnManageEmployees;
+    @FXML
+    private Button btnCreateNewJob;
 
     @Autowired
     private ConfigurableApplicationContext applicationContext;
@@ -32,6 +33,7 @@ public class MainController {
         fxmlLoader.setControllerFactory(applicationContext::getBean);
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
+        stage.setTitle("Employee Management System");
         stage.setScene(new Scene(root));
         stage.show();
 
@@ -50,4 +52,13 @@ public class MainController {
         //parent.setScene(scene);
     }
 
+    public void setBtnCreateNewJob(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("job.fxml"));
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Create New Job");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

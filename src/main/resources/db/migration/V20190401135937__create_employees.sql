@@ -1,4 +1,4 @@
-create table EMPLOYEES
+create table EMPLOYEE
 (
   ID SERIAL NOT NULL
     primary key,

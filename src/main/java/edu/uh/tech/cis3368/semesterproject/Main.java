@@ -80,7 +80,6 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Employee Management System");
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
 
