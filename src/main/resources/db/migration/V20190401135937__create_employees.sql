@@ -2,8 +2,8 @@ create table EMPLOYEE
 (
   ID SERIAL NOT NULL
     primary key,
-  LAST_NAME VARCHAR(24) not null,
-  FIRST_NAME VARCHAR(24) not null,
-  PHONE VARCHAR(12) not null,
-  EMAIL VARCHAR(24) not null unique
+  LAST_NAME VARCHAR(24) not null check (LAST_NAME <> ''),
+  FIRST_NAME VARCHAR(24) not null check FIRST_NAME <> '',
+  PHONE VARCHAR(12) not null check (PHONE <> ''),
+  EMAIL VARCHAR(24) not null unique check (EMAIL <> '')
 );

@@ -19,21 +19,17 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="job_name" layoutX="64.0" layoutY="129.0" prefHeight="26.0" prefWidth="185.0" promptText="Job name" />
-      <TextArea fx:id="job_description" layoutX="33.0" layoutY="170.0" prefHeight="200.0" prefWidth="247.0" promptText="Please provide a brief description of the job..." />
-      <Label layoutX="453.0" layoutY="127.0" text="Customer Information">
+      <TextField fx:id="jobName" layoutX="64.0" layoutY="129.0" prefHeight="26.0" prefWidth="185.0" promptText="Job name" />
+      <TextArea fx:id="jobDescription" layoutX="33.0" layoutY="170.0" prefHeight="200.0" prefWidth="247.0" promptText="Please provide a brief description of the job..." />
+      <Label layoutX="453.0" layoutY="177.0" text="Customer Information">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="name" layoutX="432.0" layoutY="160.0" prefHeight="26.0" prefWidth="185.0" promptText="Name" />
-      <TextField fx:id="address_ln1" layoutX="432.0" layoutY="201.0" prefHeight="26.0" prefWidth="186.0" promptText="Street address line 1" />
-      <TextField fx:id="address_ln2" layoutX="432.0" layoutY="239.0" prefWidth="185.0" promptText="Street address line 2" />
-      <TextField fx:id="city" layoutX="400.0" layoutY="275.0" prefHeight="26.0" prefWidth="100.0" promptText="City" />
-      <TextField fx:id="state" layoutX="511.0" layoutY="275.0" prefWidth="50.0" promptText="State" />
-      <TextField fx:id="zip" layoutX="571.0" layoutY="275.0" prefHeight="26.0" prefWidth="72.0" promptText="Zipcode" />
-      <TextField fx:id="phone" layoutX="451.0" layoutY="314.0" promptText="Phone number" />
-      <Button fx:id="submit" layoutX="288.0" layoutY="404.0" mnemonicParsing="false" onAction="#setBtnSubmit" text="Submit" />
-      <Button fx:id="cancel" layoutX="360.0" layoutY="404.0" mnemonicParsing="false" text="Cancel" />
+      <TextField fx:id="customerName" layoutX="432.0" layoutY="210.0" prefHeight="26.0" prefWidth="185.0" promptText="Name" />
+      <TextField fx:id="customerAddress" layoutX="432.0" layoutY="256.0" prefWidth="185.0" promptText="Street address" />
+      <TextField fx:id="customerPhone" layoutX="450.0" layoutY="302.0" promptText="Phone number" />
+      <Button fx:id="btnSubmit" layoutX="288.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleDone" text="Submit" />
+      <Button fx:id="btnCancel" layoutX="360.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>

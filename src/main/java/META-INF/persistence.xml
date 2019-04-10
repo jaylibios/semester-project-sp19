@@ -7,6 +7,11 @@
         <class>edu.uh.tech.cis3368.semesterproject.Job</class>
         <class>edu.uh.tech.cis3368.semesterproject.JobStage</class>
         <class>edu.uh.tech.cis3368.semesterproject.Employee</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Customer</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Job</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Component</class>
+        <class>edu.uh.tech.cis3368.semesterproject.Product</class>
+        <class>edu.uh.tech.cis3368.semesterproject.ProductComponent</class>
         <properties>
             <property name="toplink.jdbc.url"
                       value="jdbc:h2:C:/Users/jjl09/Documents/School/SPRING 2019/CIS 3368 - Adv Info Sys Dev (Lancaster)/semester-project/project;AUTO_SERVER=true"/>

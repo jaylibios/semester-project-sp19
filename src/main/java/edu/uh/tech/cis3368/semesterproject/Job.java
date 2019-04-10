@@ -4,14 +4,32 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "JOBS", schema = "PUBLIC", catalog = "PROJECT")
 public class Job {
     private int id;
     private String jobName;
     private String description;
-    private Customer customerByCustomerId;
+    private int productId;
+    private int jobStageId;
+    private int customerId;
+
+    private Customer customer;
+    private JobStage jobStage;
+    private Product product;
+
+    public Job() {
+
+    }
+
+    public Job(String name, String description, Customer customer, JobStage jobStage, Product product) {
+        this.jobName = name;
+        this.description = description;
+        this.customer = customer;
+        this.jobStage = jobStage;
+        this.product = product;
+    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     public int getId() {
         return id;
@@ -41,28 +59,51 @@ public class Job {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "PRODUCT_ID", nullable = false)
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "JOB_STAGE_ID", referencedColumnName = "ID")
+    public JobStage getJobStage() {
+        return jobStage;
+    }
+
+    public void setJobStage(JobStage jobStage) {
+        this.jobStage = jobStage;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID")
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customerByCustomerId) {
+        this.customer = customerByCustomerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Job that = (Job) o;
-        return id == that.id &&
-                Objects.equals(jobName, that.jobName) &&
-                Objects.equals(description, that.description);
+        Job job = (Job) o;
+        return id == job.id &&
+                productId == job.productId &&
+                jobStageId == job.jobStageId &&
+                customerId == job.customerId &&
+                Objects.equals(jobName, job.jobName) &&
+                Objects.equals(description, job.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jobName, description);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID", nullable = false)
-    public Customer getCustomerByCustomerId() {
-        return customerByCustomerId;
-    }
-
-    public void setCustomerByCustomerId(Customer customerByCustomerId) {
-        this.customerByCustomerId = customerByCustomerId;
+        return Objects.hash(id, jobName, description, productId, jobStageId, customerId);
     }
 }

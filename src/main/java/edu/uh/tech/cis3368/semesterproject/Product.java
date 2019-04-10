@@ -4,11 +4,19 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "JOB_STAGE", schema = "PUBLIC", catalog = "PROJECT")
-public class JobStage {
+public class Product {
     private int id;
     private String name;
-    private int ordinal;
+    private String description;
+
+    public Product() {
+
+    }
+
+    public Product(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,27 +40,27 @@ public class JobStage {
     }
 
     @Basic
-    @Column(name = "ORDINAL", nullable = false)
-    public int getOrdinal() {
-        return ordinal;
+    @Column(name = "DESCRIPTION", nullable = false, length = 255)
+    public String getDescription() {
+        return description;
     }
 
-    public void setOrdinal(int ordinal) {
-        this.ordinal = ordinal;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        JobStage jobStage = (JobStage) o;
-        return id == jobStage.id &&
-                ordinal == jobStage.ordinal &&
-                Objects.equals(name, jobStage.name);
+        Product product = (Product) o;
+        return id == product.id &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, ordinal);
+        return Objects.hash(id, name, description);
     }
 }
