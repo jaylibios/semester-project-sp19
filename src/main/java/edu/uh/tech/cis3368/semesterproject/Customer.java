@@ -14,10 +14,10 @@ public class Customer {
 
     }
 
-    public Customer(String custName, String custAddress, String custPhone) {
-        name = custName;
-        streetAddress = custAddress;
-        phone = custPhone;
+    public Customer(String customerName, String customerAddress, String customerPhone) {
+        name = customerName;
+        streetAddress = customerAddress;
+        phone = customerPhone;
     }
 
     @Id

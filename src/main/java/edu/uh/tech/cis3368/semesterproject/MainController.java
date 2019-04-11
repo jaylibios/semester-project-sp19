@@ -21,6 +21,8 @@ public class MainController {
     private Button btnManageEmployees;
     @FXML
     private Button btnCreateNewJob;
+    @FXML
+    private Button btnViewJobs;
 
     @Autowired
     private ConfigurableApplicationContext applicationContext;
@@ -58,6 +60,17 @@ public class MainController {
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Create New Job");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void setBtnViewJobs(ActionEvent actionEvent) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("jobViewer.fxml"));
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("View Jobs");
         stage.setScene(new Scene(root));
         stage.show();
     }

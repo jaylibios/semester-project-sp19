@@ -33,13 +33,14 @@ public class JobService {
         customerRepository.save(customer);
 
         // dummy product
-        //Product product = new Product("Name","Description");
-        //productRepository.save(product);
+        Product product = new Product("Name","Description");
+        productRepository.save(product);
 
-        //var jobStage = jobStageRepository.findByOrdinal(1);
-        //Job job = new Job(jobName, jobDescription, customer, jobStage, product);
+        var jobStage = jobStageRepository.findByOrdinal(1);
+        System.out.println(jobStage);
+        Job job = new Job(jobName, jobDescription, customer, jobStage, product);
 
-        //jobRepository.save(job);
+        jobRepository.save(job);
 
         //return job;
     }

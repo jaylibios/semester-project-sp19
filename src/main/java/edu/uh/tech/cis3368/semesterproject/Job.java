@@ -59,14 +59,14 @@ public class Job {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "PRODUCT_ID", nullable = false)
-    public int getProductId() {
-        return productId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @ManyToOne

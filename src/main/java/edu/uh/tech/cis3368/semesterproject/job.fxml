@@ -14,13 +14,13 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="96.0" text="Job Information">
+      <Label layoutX="128.0" layoutY="96.0" text="Job Information">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="jobName" layoutX="64.0" layoutY="129.0" prefHeight="26.0" prefWidth="185.0" promptText="Job name" />
-      <TextArea fx:id="jobDescription" layoutX="33.0" layoutY="170.0" prefHeight="200.0" prefWidth="247.0" promptText="Please provide a brief description of the job..." />
+      <TextField fx:id="jobName" layoutX="84.0" layoutY="129.0" prefHeight="26.0" prefWidth="185.0" promptText="Job name" />
+      <TextArea fx:id="jobDescription" layoutX="53.0" layoutY="170.0" prefHeight="200.0" prefWidth="247.0" promptText="Please provide a brief description of the job..." />
       <Label layoutX="453.0" layoutY="177.0" text="Customer Information">
          <font>
             <Font size="14.0" />
@@ -29,7 +29,7 @@
       <TextField fx:id="customerName" layoutX="432.0" layoutY="210.0" prefHeight="26.0" prefWidth="185.0" promptText="Name" />
       <TextField fx:id="customerAddress" layoutX="432.0" layoutY="256.0" prefWidth="185.0" promptText="Street address" />
       <TextField fx:id="customerPhone" layoutX="450.0" layoutY="302.0" promptText="Phone number" />
-      <Button fx:id="btnSubmit" layoutX="288.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleDone" text="Submit" />
-      <Button fx:id="btnCancel" layoutX="360.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button fx:id="btnSubmit" layoutX="288.0" layoutY="404.0" mnemonicParsing="false" onAction="#setBtnSubmit" text="Submit" />
+      <Button fx:id="btnCancel" layoutX="360.0" layoutY="404.0" mnemonicParsing="false" onAction="#setBtnCancel" text="Cancel" />
    </children>
 </AnchorPane>

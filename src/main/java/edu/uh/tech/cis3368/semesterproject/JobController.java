@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -30,22 +32,41 @@ public class JobController implements Initializable {
     @FXML
     private TextField customerPhone;
 
+    @FXML
+    private Button btnCancel;
+
+    @Autowired
+    CustomerRepository customerRepository;
+    @Autowired
+    JobRepository jobRepository;
+    @Autowired
+    JobStageRepository jobStageRepository;
+    @Autowired
+    ProductRepository productRepository;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public void handleDone(ActionEvent actionEvent) {
-        //var stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        //stage.setScene(returnScene);
-        jobService.createJobWithCustomer(jobName.getText(),
-                jobDescription.getText(),
-                customerName.getText(),
-                customerAddress.getText(),
-                customerPhone.getText());
+    @FXML
+    private void setBtnSubmit(ActionEvent actionEvent) {
+        jobService.createJobWithCustomer(jobName.getText(), jobDescription.getText(),
+                customerName.getText(), customerAddress.getText(), customerPhone.getText());
+        clearFields();
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
+    @FXML
+    private void setBtnCancel(ActionEvent actionEvent) {
+        Stage stage = (Stage)btnCancel.getScene().getWindow();
+        stage.close();
+    }
 
+    private void clearFields() {
+        jobName.clear();
+        jobDescription.clear();
+        customerName.clear();
+        customerAddress.clear();
+        customerPhone.clear();
     }
 }
