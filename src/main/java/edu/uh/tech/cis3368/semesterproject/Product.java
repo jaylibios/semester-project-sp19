@@ -18,6 +18,11 @@ public class Product {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s", name);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)

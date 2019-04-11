@@ -16,11 +16,13 @@ import java.util.ResourceBundle;
 public class ComponentController implements Initializable {
     @FXML
     private ListView<Component> componentListView;
+    @FXML
+    private ListView<Product> productListView;
 
     @Autowired
     private ComponentRepository componentRepository;
-
-    private ObservableList<Component> componentList = FXCollections.observableArrayList();
+    @Autowired
+    private ProductRepository productRepository;
 
     private Scene returnScene;
     public void setReturnScene(Scene scene) {
@@ -29,9 +31,14 @@ public class ComponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Component page");
-        componentRepository.findAll().forEach(componentList::add);
-        componentListView.setItems(componentList);
+        ObservableList<Component> componentObservableList = FXCollections.observableArrayList();
+        componentRepository.findAll().forEach(componentObservableList::add);
+        componentListView.setItems(componentObservableList);
+
+        ObservableList<Product> productObservableList = FXCollections.observableArrayList();
+        productRepository.findAll().forEach(productObservableList::add);
+        productListView.setItems(productObservableList);
+
 
     }
 }

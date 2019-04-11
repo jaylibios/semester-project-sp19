@@ -14,6 +14,11 @@ public class Component {
     private String description;
     private BigInteger wholesalePrice;
 
+    @Override
+    public String toString() {
+        return String.format("%s", name);
+    }
+
     @Id
     @Column(name = "ID", nullable = false)
     public int getId() {
