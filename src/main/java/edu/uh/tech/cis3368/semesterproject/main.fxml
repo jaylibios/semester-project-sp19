@@ -7,6 +7,6 @@
    <children>
       <Button id="btnManageEmployees" fx:id="btnManageEmployees" layoutX="240.0" layoutY="141.0" mnemonicParsing="false" onAction="#setBtnManageEmployees" text="Manage Employees" />
       <Button fx:id="btnCreateNewJob" layoutX="250.0" layoutY="187.0" mnemonicParsing="false" onAction="#setBtnCreateNewJob" text="Create New Job" />
-      <Button fx:id="btnCreateNewJob1" layoutX="265.0" layoutY="233.0" mnemonicParsing="false" onAction="#setBtnViewJobs" text="View Jobs" />
+      <Button fx:id="btnViewJobs" layoutX="265.0" layoutY="233.0" mnemonicParsing="false" onAction="#setBtnViewJobs" text="View Jobs" />
    </children>
 </AnchorPane>

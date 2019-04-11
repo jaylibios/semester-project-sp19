@@ -44,6 +44,12 @@ public class JobController implements Initializable {
     @Autowired
     ProductRepository productRepository;
 
+    private Scene returnScene;
+
+    public void setReturnScene(Scene scene) {
+        this.returnScene = scene;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

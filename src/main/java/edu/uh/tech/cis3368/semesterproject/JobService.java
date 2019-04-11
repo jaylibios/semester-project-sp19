@@ -37,8 +37,8 @@ public class JobService {
         productRepository.save(product);
 
         var jobStage = jobStageRepository.findByOrdinal(1);
-        System.out.println(jobStage);
         Job job = new Job(jobName, jobDescription, customer, jobStage, product);
+        System.out.println(job.getJobStage().getName());
 
         jobRepository.save(job);
 

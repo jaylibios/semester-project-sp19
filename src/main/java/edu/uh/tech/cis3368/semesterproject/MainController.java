@@ -3,6 +3,7 @@ package edu.uh.tech.cis3368.semesterproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,23 +56,23 @@ public class MainController {
     }
 
     public void setBtnCreateNewJob(ActionEvent actionEvent) throws IOException {
+        Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("job.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Create New Job");
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene scene = new Scene(fxmlLoader.load());
+        JobController jobController = fxmlLoader.getController();
+        jobController.setReturnScene(btnCreateNewJob.getScene());
+        parent.setScene(scene);
     }
 
     @FXML
-    private void setBtnViewJobs(ActionEvent actionEvent) throws IOException{
+    private void setBtnViewJobs(ActionEvent actionEvent) throws IOException {
+        Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("jobViewer.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("View Jobs");
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene scene = new Scene(fxmlLoader.load());
+        JobViewerController jobViewerController = fxmlLoader.getController();
+        jobViewerController.setReturnScene(btnViewJobs.getScene());
+        parent.setScene(scene);
     }
 }

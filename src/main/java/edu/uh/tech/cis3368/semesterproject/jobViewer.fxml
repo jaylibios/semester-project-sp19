@@ -15,12 +15,13 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreateProduct" layoutX="296.0" layoutY="453.0" mnemonicParsing="false" text="Create Product" />
+      <Button fx:id="btnCreateProduct" layoutX="296.0" layoutY="453.0" mnemonicParsing="false" onAction="#setBtnCreateProduct" text="Create Product" />
       <Button fx:id="btnViewProducts" layoutX="413.0" layoutY="453.0" mnemonicParsing="false" text="View Products" />
       <TableView fx:id="jobTableView" layoutX="16.0" layoutY="60.0" prefHeight="371.0" prefWidth="766.0">
         <columns>
           <TableColumn fx:id="colJobName" prefWidth="263.20001220703125" text="Name" />
-          <TableColumn fx:id="colJobDescription" prefWidth="502.4000244140625" text="Description" />
+          <TableColumn fx:id="colJobDescription" prefWidth="317.5999755859375" text="Description" />
+            <TableColumn fx:id="colJobStage" prefWidth="184.79998779296875" text="Stage" />
         </columns>
       </TableView>
    </children>
