@@ -4,11 +4,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "JOB_STAGE", schema = "PUBLIC", catalog = "PROJECT")
 public class JobStage {
     private int id;
     private String name;
     private int ordinal;
+
+    @Override
+    public String toString() {
+        return String.format("%s", name);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

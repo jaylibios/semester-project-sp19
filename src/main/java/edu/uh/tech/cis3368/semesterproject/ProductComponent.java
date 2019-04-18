@@ -11,6 +11,16 @@ public class ProductComponent {
     private Component componentByComponentId;
     private Product productByProductId;
 
+    public ProductComponent() {
+
+    }
+
+    public ProductComponent(int quantity, Component componentID, Product productID) {
+        this.quantity = quantity;
+        this.componentByComponentId = componentID;
+        this.productByProductId = productID;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)

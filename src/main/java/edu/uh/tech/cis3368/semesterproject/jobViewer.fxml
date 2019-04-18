@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.JobViewerController">
    <children>
       <Label layoutX="338.0" layoutY="14.0" text="Job Viewer">
@@ -15,8 +14,8 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreateProduct" layoutX="296.0" layoutY="453.0" mnemonicParsing="false" onAction="#setBtnCreateProduct" text="Create Product" />
-      <Button fx:id="btnViewProducts" layoutX="413.0" layoutY="453.0" mnemonicParsing="false" text="View Products" />
+      <Button fx:id="btnCreateProduct" layoutX="259.0" layoutY="451.0" mnemonicParsing="false" onAction="#setBtnCreateProduct" text="Create Product" />
+      <Button fx:id="btnViewProducts" layoutX="494.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
       <TableView fx:id="jobTableView" layoutX="16.0" layoutY="60.0" prefHeight="371.0" prefWidth="766.0">
         <columns>
           <TableColumn fx:id="colJobName" prefWidth="263.20001220703125" text="Name" />
@@ -24,5 +23,6 @@
             <TableColumn fx:id="colJobStage" prefWidth="184.79998779296875" text="Stage" />
         </columns>
       </TableView>
+      <Button fx:id="btnMoveToNextStage" layoutX="363.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleMoveStage" text="Move to Next Stage" />
    </children>
 </AnchorPane>

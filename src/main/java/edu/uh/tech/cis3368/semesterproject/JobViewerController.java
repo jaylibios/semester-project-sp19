@@ -28,6 +28,10 @@ public class JobViewerController implements Initializable {
     private Button btnCreateProduct;
     @FXML
     private Button btnViewProducts;
+    @FXML
+    private Button btnDone;
+    @FXML
+    private Button btnMoveToNextStage;
 
     @FXML
     private TableView<Job> jobTableView;
@@ -78,6 +82,16 @@ public class JobViewerController implements Initializable {
     }
 
     @FXML
+    private void handleTableViewSelection(ActionEvent actionEvent) {
+        ComponentController componentController;
+        System.out.println("selection");
+        ObservableList<Job> data = FXCollections.observableArrayList();
+
+        jobTableView.getSelectionModel().getSelectedItem();
+
+    }
+
+    @FXML
     private void setBtnCreateProduct(ActionEvent actionEvent) throws IOException {
         Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("component.fxml"));
@@ -88,9 +102,33 @@ public class JobViewerController implements Initializable {
         parent.setScene(scene);
     }
 
+    @FXML
+    private void handleMoveStage(ActionEvent actionEvent) {
+        Job job = jobTableView.getSelectionModel().getSelectedItem();
+        int currentStage = job.getJobStage().getOrdinal();
+        System.out.println(currentStage);
+
+        if(currentStage == 1) {
+            var jobStage = jobStageRepository.findByOrdinal(2);
+            job.setJobStage(jobStage);
+        } else if(currentStage == 2) {
+            var jobStage = jobStageRepository.findByOrdinal(3);
+            job.setJobStage(jobStage);
+        }
+
+        jobRepository.save(job);
+        jobTableView.refresh();
+
+    }
+
     private void setColumnProperties() {
         colJobName.setCellValueFactory(new PropertyValueFactory<>("jobName"));
         colJobDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colJobStage.setCellValueFactory(new PropertyValueFactory<>("jobStage"));
+    }
+
+    @FXML private void handleDone(ActionEvent actionEvent) {
+        var stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(returnScene);
     }
 }

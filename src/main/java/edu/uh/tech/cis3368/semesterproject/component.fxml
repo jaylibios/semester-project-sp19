@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.ComponentController">
+<AnchorPane prefHeight="442.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.ComponentController">
    <children>
-      <ListView fx:id="componentListView" layoutX="62.0" layoutY="88.0" prefHeight="258.0" prefWidth="200.0" />
-      <Label layoutX="102.0" layoutY="51.0" text="Available Components" />
-      <ListView fx:id="productListView" layoutX="341.0" layoutY="87.0" prefHeight="258.0" prefWidth="200.0" />
-      <Label layoutX="420.0" layoutY="48.0" text="Product" />
+      <Label fx:id="labelJobName" layoutX="325.0" layoutY="23.0" text="Create a Product">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <ListView fx:id="componentListView" layoutX="238.0" layoutY="110.0" prefHeight="278.0" prefWidth="200.0" />
+      <Label layoutX="292.0" layoutY="73.0" text="Components">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAddToProduct" layoutX="462.0" layoutY="236.0" mnemonicParsing="false" onAction="#setBtnAddToProduct" text="Add to Product" />
+      <TextField fx:id="quantityTextField" layoutX="486.0" layoutY="194.0" prefHeight="26.0" prefWidth="46.0" text="1" />
+      <Label layoutX="486.0" layoutY="169.0" text="Quantity" />
+      <Button fx:id="btnDone" layoutX="377.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
    </children>
 </AnchorPane>
