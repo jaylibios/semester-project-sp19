@@ -7,11 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,40 +21,29 @@ import java.util.ResourceBundle;
 
 @Controller
 public class JobViewerController implements Initializable {
-    @FXML
-    private Button btnCreateProduct;
-    @FXML
-    private Button btnViewProducts;
-    @FXML
-    private Button btnDone;
-    @FXML
-    private Button btnMoveToNextStage;
+    @FXML private Button btnCreateProduct;
+    @FXML private Button btnViewProducts;
+    @FXML private Button btnDone;
+    @FXML private Button btnMoveToNextStage;
 
-    @FXML
-    private TableView<Job> jobTableView;
+    @FXML private TableView<Job> jobTableView;
 
-    @FXML
-    private TableColumn<Job, String> colJobName;
-    @FXML
-    private TableColumn<Job, String> colJobDescription;
-    @FXML
-    private TableColumn<Job, Integer> colJobStage;
+    @FXML private TableColumn<Job, String> colJobName;
+    @FXML private TableColumn<Job, String> colJobDescription;
+    @FXML private TableColumn<Job, Integer> colJobStage;
 
-    @FXML
-    private Button getBtnCreateProduct;
+    @FXML private Button getBtnCreateProduct;
 
-    private ObservableList<Job> jobList = FXCollections.observableArrayList();
+    @Autowired private JobService jobService;
 
-    @Autowired
-    private JobRepository jobRepository;
-    @Autowired
-    public JobStageRepository jobStageRepository;
+    private ObservableList<Job> jobList;
 
-    @Autowired
-    private ConfigurableApplicationContext applicationContext;
+    @Autowired private JobRepository jobRepository;
+    @Autowired public JobStageRepository jobStageRepository;
+
+    @Autowired private ConfigurableApplicationContext applicationContext;
 
     private Scene returnScene;
-
     public void setReturnScene(Scene scene) {
         this.returnScene = scene;
     }
@@ -65,45 +51,37 @@ public class JobViewerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setColumnProperties();
-        btnCreateProduct.setDisable(true);
-        btnViewProducts.setDisable(true);
+        disableButtons();
 
+        jobList = FXCollections.observableArrayList();
         jobRepository.findAll().forEach(jobList::add);
         jobTableView.setItems(jobList);
 
         jobTableView.getSelectionModel().selectedItemProperty().addListener(((obs, oldSelection, newSelection) -> {
             Job job = newSelection;
             if(job != null) {
-                btnCreateProduct.setDisable(false);
-                btnViewProducts.setDisable(false);
+                showButtons();
+                System.out.println(job.getJobName());
             }
         }));
 
     }
 
-    @FXML
-    private void handleTableViewSelection(ActionEvent actionEvent) {
-        ComponentController componentController;
-        System.out.println("selection");
-        ObservableList<Job> data = FXCollections.observableArrayList();
+    @FXML private void handleCreateProduct(ActionEvent actionEvent) throws IOException {
+        Job job = jobTableView.getSelectionModel().getSelectedItem();
+        jobService.setJobProduct(job.getProduct());
 
-        jobTableView.getSelectionModel().getSelectedItem();
-
-    }
-
-    @FXML
-    private void setBtnCreateProduct(ActionEvent actionEvent) throws IOException {
         Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("component.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
         Scene scene = new Scene(fxmlLoader.load());
         ComponentController componentController = fxmlLoader.getController();
         componentController.setReturnScene(btnCreateProduct.getScene());
+        parent.setTitle("Create a Product");
         parent.setScene(scene);
     }
 
-    @FXML
-    private void handleMoveStage(ActionEvent actionEvent) {
+    @FXML private void handleMoveStage(ActionEvent actionEvent) {
         Job job = jobTableView.getSelectionModel().getSelectedItem();
         int currentStage = job.getJobStage().getOrdinal();
         System.out.println(currentStage);
@@ -119,6 +97,14 @@ public class JobViewerController implements Initializable {
         jobRepository.save(job);
         jobTableView.refresh();
 
+        Alert alert = new Alert(Alert.AlertType.NONE, "Job moved to next stage.", ButtonType.OK);
+        alert.show();
+
+    }
+
+    @FXML private void handleDone(ActionEvent actionEvent) {
+        var stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(returnScene);
     }
 
     private void setColumnProperties() {
@@ -127,8 +113,13 @@ public class JobViewerController implements Initializable {
         colJobStage.setCellValueFactory(new PropertyValueFactory<>("jobStage"));
     }
 
-    @FXML private void handleDone(ActionEvent actionEvent) {
-        var stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(returnScene);
+    private void showButtons() {
+        btnCreateProduct.setDisable(false);
+        btnMoveToNextStage.setDisable(false);
+    }
+
+    private void disableButtons() {
+        btnCreateProduct.setDisable(true);
+        btnMoveToNextStage.setDisable(true);
     }
 }

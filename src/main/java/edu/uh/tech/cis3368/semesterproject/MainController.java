@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -24,44 +23,31 @@ public class MainController {
     private Button btnCreateNewJob;
     @FXML
     private Button btnViewJobs;
+    @FXML
+    Button btnViewReport;
 
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
     public void setBtnManageEmployees(ActionEvent actionEvent) throws IOException {
-        /** Open in new window
-         *  Load FXML file
-         *  Set controller factory **/
+        Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("employees.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Employee Management System");
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        /** Changing scenes
-         *  Get stage from action event
-         *  Cast as a node -> get scene, get window
-         ** Don't have to load scene again, already in memory from main
-         *  Call FXML loader, get controller after setting scene
-         *  Set scene, store scene and then set scene in parent
-         ** DON'T KNOW WHERE '.getScene()' comes from **/
-        //Stage parent = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("employees.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load());
-        //EmployeeController employeeController = fxmlLoader.getController();
-        //employeeController.setReturnScene(btnManageEmployees.getScene());
-        //parent.setScene(scene);
+        Scene scene = new Scene(fxmlLoader.load());
+        EmployeeController employeeController = fxmlLoader.getController();
+        employeeController.setReturnScene(btnManageEmployees.getScene());
+        parent.setTitle("Employee Management System");
+        parent.setScene(scene);
     }
 
     public void setBtnCreateNewJob(ActionEvent actionEvent) throws IOException {
         Stage parent  = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("job.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createJob.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
         Scene scene = new Scene(fxmlLoader.load());
-        JobController jobController = fxmlLoader.getController();
-        jobController.setReturnScene(btnCreateNewJob.getScene());
+        CreateJobController createJobController = fxmlLoader.getController();
+        createJobController.setReturnScene(btnCreateNewJob.getScene());
+        parent.setTitle("Create New Job");
         parent.setScene(scene);
     }
 

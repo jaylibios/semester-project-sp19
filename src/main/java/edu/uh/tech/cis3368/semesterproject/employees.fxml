@@ -8,31 +8,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="466.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.EmployeeController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.EmployeeController">
    <children>
-      <Label layoutX="214.0" layoutY="14.0" text="Employee Management">
+      <Label layoutX="309.0" layoutY="13.0" text="Employee Management">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TableView fx:id="employeeTableView" layoutX="54.0" layoutY="61.0" onMouseClicked="#getSelectedEmployee" prefHeight="200.0" prefWidth="592.0">
+      <TableView fx:id="employeeTableView" layoutX="35.0" layoutY="66.0" prefHeight="399.0" prefWidth="819.0">
         <columns>
-          <TableColumn fx:id="colLastName" minWidth="100.0" prefWidth="130.0" text="Last Name" />
-          <TableColumn fx:id="colFirstName" minWidth="100.0" prefWidth="130.0" text="First Name" />
-            <TableColumn fx:id="colPhone" minWidth="100.0" prefWidth="130.0" text="Phone Number" />
-            <TableColumn fx:id="colEmail" minWidth="110.0" prefWidth="199.99996948242188" text="Email" />
+          <TableColumn fx:id="colLastName" minWidth="100.0" prefWidth="200.0" text="Last Name" />
+          <TableColumn fx:id="colFirstName" minWidth="84.0" prefWidth="200.0" text="First Name" />
+            <TableColumn fx:id="colPhone" minWidth="100.0" prefWidth="200.0" text="Phone Number" />
+            <TableColumn fx:id="colEmail" minWidth="110.0" prefWidth="217.0" text="Email" />
         </columns>
       </TableView>
-      <Label layoutX="87.0" layoutY="293.0" text="Last Name" />
-      <Label layoutX="368.0" layoutY="293.0" text="First Name" />
-      <Label layoutX="62.0" layoutY="354.0" text="Phone Number" />
-      <Label layoutX="350.0" layoutY="354.0" text="Email Address" />
-      <TextField fx:id="lastName" layoutX="152.0" layoutY="289.0" prefHeight="26.0" prefWidth="180.0" />
-      <TextField fx:id="firstName" layoutX="433.0" layoutY="289.0" prefHeight="26.0" prefWidth="180.0" />
-      <TextField fx:id="phone" layoutX="152.0" layoutY="350.0" prefHeight="26.0" prefWidth="180.0" />
-      <TextField fx:id="email" layoutX="433.0" layoutY="350.0" prefHeight="26.0" prefWidth="180.0" />
-      <Button fx:id="btnAddEmployee" layoutX="54.0" layoutY="413.0" mnemonicParsing="false" onAction="#setBtnAddEmployee" text="Add Employee" />
-      <Button fx:id="btnDeleteEmployee" layoutX="540.0" layoutY="413.0" mnemonicParsing="false" onAction="#setBtnDeleteEmployee" text="Delete Employee" />
-      <Button fx:id="btnUpdateEmployee" layoutX="295.0" layoutY="413.0" mnemonicParsing="false" onAction="#setBtnUpdateEmployee" text="Update Employee" />
+      <Label layoutX="200.0" layoutY="514.0" text="Last Name" />
+      <Label layoutX="481.0" layoutY="514.0" text="First Name" />
+      <Label layoutX="175.0" layoutY="575.0" text="Phone Number" />
+      <Label layoutX="463.0" layoutY="575.0" text="Email Address" />
+      <TextField fx:id="lastName" layoutX="265.0" layoutY="510.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="firstName" layoutX="546.0" layoutY="510.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="phone" layoutX="265.0" layoutY="571.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="email" layoutX="546.0" layoutY="571.0" prefHeight="26.0" prefWidth="180.0" />
+      <Button fx:id="btnAddEmployee" layoutX="191.0" layoutY="649.0" mnemonicParsing="false" onAction="#setBtnAddEmployee" text="Add Employee" />
+      <Button fx:id="btnDeleteEmployee" layoutX="677.0" layoutY="649.0" mnemonicParsing="false" onAction="#setBtnDeleteEmployee" text="Delete Employee" />
+      <Button fx:id="btnUpdateEmployee" layoutX="432.0" layoutY="649.0" mnemonicParsing="false" onAction="#setBtnUpdateEmployee" text="Update Employee" />
+      <Button fx:id="btnBack" layoutX="35.0" layoutY="19.0" mnemonicParsing="false" onAction="#setBtnBack" text="Back" />
    </children>
 </AnchorPane>

@@ -21,6 +21,11 @@ public class ProductComponent {
         this.productByProductId = productID;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s", componentByComponentId);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)

@@ -14,6 +14,9 @@ public class JobService {
     private final ProductRepository productRepository;
     private final JobStageRepository jobStageRepository;
 
+    private Product jobProduct;
+    private Component jobComponent;
+
     @Autowired
     public JobService(JobRepository jobRepository,
                       CustomerRepository customerRepository,
@@ -41,8 +44,23 @@ public class JobService {
         System.out.println(job.getJobStage().getName());
 
         jobRepository.save(job);
+    }
 
-        //return job;
+    public void setJobProduct(Product product) {
+        this.jobProduct = product;
+        System.out.println(product);
+    }
+
+    public Product getJobProduct() {
+        return jobProduct;
+    }
+
+    public void setJobComponent(Component component) {
+        this.jobComponent = component;
+    }
+
+    public Component getJobComponent() {
+        return jobComponent;
     }
 
 }

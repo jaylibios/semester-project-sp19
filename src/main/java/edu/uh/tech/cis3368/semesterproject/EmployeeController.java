@@ -5,13 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -20,41 +24,46 @@ import java.util.ResourceBundle;
 
 @Controller
 public class EmployeeController implements Initializable {
-    // TableView variables
     public TableView<Employee> employeeTableView;
     public TableColumn<Employee, String> colLastName;
     public TableColumn<Employee, String> colFirstName;
     public TableColumn<Employee, String> colPhone;
     public TableColumn<Employee, String> colEmail;
 
-    private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+    private ObservableList<Employee> employeeList;
 
-    // TextFields
     public TextField lastName;
     public TextField firstName;
     public TextField phone;
     public TextField email;
 
-    // Buttons
     public Button btnAddEmployee;
     public Button btnDeleteEmployee;
     public Button btnUpdateEmployee;
+    public Button btnBack;
 
-    private String VALUES_MISSING_HEADER = "Required Fields Missing";
-    private String VALUES_MISSING_CONTENT = "Please provide values for all fields";
-
-    private String DUP_EMAIL_HEADER = "Duplicate Email Found";
-    private String DUP_EMAIL_CONTENT = "The email provided has already been used";
-    private String EMAIL_CONSTRAINT = "EMPLOYEE_EMAIL_UINDEX";
+    private static final String NEW_EMPLOYEE = "New Employee";
+    private static final String UPDATE_EMPLOYEE = "Update Employee";
+    private static final String DUP_EMAIL_MESSAGE = "The email provided has already been used.";
+    private static final String DUP_EMAIL_HEADER = "Duplicate Email Found";
+    private static final String VALUES_MISSING_MESSAGE = "Please provide values for all fields";
+    private static final String VALUES_MISSING_HEADER = "Required Fields Missing";
+    private static final String DELETE_MESSAGE = "Are you sure you want to delete this employee?";
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    private Scene returnScene;
+    public void setReturnScene(Scene scene) {
+        this.returnScene = scene;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resetButtons();
         setColumnProperties();
 
+        employeeList = FXCollections.observableArrayList();
         employeeRepository.findAll().forEach(employeeList::add);
         employeeTableView.setItems(employeeList);
 
@@ -76,16 +85,7 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private void setBtnAddEmployee(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(VALUES_MISSING_HEADER);
-        alert.setContentText(VALUES_MISSING_CONTENT);
-
         Employee employee = new Employee();
-
-        if(lastName.getText().isEmpty() || firstName.getText().isEmpty()
-            || phone.getText().isEmpty() || email.getText().isEmpty()) {
-            alert.show();
-        }
 
         employee.setLastName(lastName.getText());
         employee.setFirstName(firstName.getText());
@@ -97,7 +97,7 @@ public class EmployeeController implements Initializable {
             clearTextFields();
             employeeTableView.getSelectionModel().clearSelection();
             refreshTable();
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             showFieldError(e);
         }
     }
@@ -117,7 +117,7 @@ public class EmployeeController implements Initializable {
             employeeTableView.getSelectionModel().clearSelection();
             refreshTable();
             resetButtons();
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             showFieldError(e);
         }
     }
@@ -137,8 +137,9 @@ public class EmployeeController implements Initializable {
     }
 
     @FXML
-    private void getSelectedEmployee(MouseEvent mouseEvent) {
-        System.out.println("Selected Employee.");
+    private void setBtnBack(ActionEvent actionEvent) {
+        var stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(returnScene);
     }
 
     private void resetButtons() {
@@ -167,18 +168,18 @@ public class EmployeeController implements Initializable {
         email.clear();
     }
 
-    private void showFieldError(Exception e) {
+    private void showFieldError(DataIntegrityViolationException e) {
+        // this is ONE way to handle this - there are other approaches that
+        // use translation that might be cleaner
         var message = e.getMessage();
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-
-        if(message.contains(EMAIL_CONSTRAINT)) {
-            alert.setHeaderText(DUP_EMAIL_HEADER);
-            alert.setContentText(DUP_EMAIL_CONTENT);
+        String instructions = VALUES_MISSING_MESSAGE;
+        String headerText = VALUES_MISSING_HEADER;
+        if(message.contains("EMPLOYEE_EMAIL_UINDEX")){
+            instructions = DUP_EMAIL_MESSAGE;
+            headerText = DUP_EMAIL_HEADER;
         }
-
-        alert.setHeaderText(VALUES_MISSING_HEADER);
-        alert.setContentText(VALUES_MISSING_CONTENT);
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, instructions);
+        alert.setHeaderText(headerText);
         alert.show();
     }
 

@@ -3,25 +3,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="442.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uh.tech.cis3368.semesterproject.ComponentController">
    <children>
-      <Label fx:id="labelJobName" layoutX="325.0" layoutY="23.0" text="Create a Product">
+      <Label fx:id="labelJobName" layoutX="325.0" layoutY="26.0" text="Create a Product">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <ListView fx:id="componentListView" layoutX="238.0" layoutY="110.0" prefHeight="278.0" prefWidth="200.0" />
-      <Label layoutX="292.0" layoutY="73.0" text="Components">
+      <ListView fx:id="componentListView" layoutX="40.0" layoutY="109.0" prefHeight="278.0" prefWidth="200.0" />
+      <Label layoutX="94.0" layoutY="71.0" text="Components">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddToProduct" layoutX="462.0" layoutY="236.0" mnemonicParsing="false" onAction="#setBtnAddToProduct" text="Add to Product" />
-      <TextField fx:id="quantityTextField" layoutX="486.0" layoutY="194.0" prefHeight="26.0" prefWidth="46.0" text="1" />
-      <Label layoutX="486.0" layoutY="169.0" text="Quantity" />
-      <Button fx:id="btnDone" layoutX="377.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
+      <Button fx:id="btnAddToProduct" layoutX="264.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleAddToProduct" text="Add to Product" />
+      <TextField fx:id="quantityTextField" layoutX="288.0" layoutY="193.0" prefHeight="26.0" prefWidth="46.0" text="1" />
+      <Label layoutX="288.0" layoutY="168.0" text="Quantity" />
+      <Button fx:id="btnDone" layoutX="117.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
+      <Label layoutX="255.0" layoutY="276.0" text="Product Total:" />
+      <Label fx:id="productTotalAmt" layoutX="338.0" layoutY="276.0" text="\$0.00" />
+      <ListView fx:id="pcListView" layoutX="388.0" layoutY="109.0" prefHeight="278.0" prefWidth="200.0" />
+      <Label layoutX="460.0" layoutY="71.0" text="Product">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="161.0" text="Product Name" />
+      <TextField fx:id="productNameTextField" layoutX="617.0" layoutY="189.0" />
+      <Label layoutX="637.0" layoutY="221.0" text="Product Description" />
+      <TextArea fx:id="productDescriptionTextArea" layoutX="616.0" layoutY="248.0" prefHeight="88.0" prefWidth="149.0" />
+      <Button fx:id="btnUpdateProduct" layoutX="663.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleUpdateProduct" text="Update" />
+      <Button layoutX="425.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleRemoveComponent" text="Remove Component" />
    </children>
 </AnchorPane>

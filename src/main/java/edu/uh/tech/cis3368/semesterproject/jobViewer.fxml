@@ -14,8 +14,8 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreateProduct" layoutX="259.0" layoutY="451.0" mnemonicParsing="false" onAction="#setBtnCreateProduct" text="Create Product" />
-      <Button fx:id="btnViewProducts" layoutX="494.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
+      <Button fx:id="btnCreateProduct" layoutX="232.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleCreateProduct" text="Create Product" />
+      <Button fx:id="btnDone" layoutX="470.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleDone" text="Done" />
       <TableView fx:id="jobTableView" layoutX="16.0" layoutY="60.0" prefHeight="371.0" prefWidth="766.0">
         <columns>
           <TableColumn fx:id="colJobName" prefWidth="263.20001220703125" text="Name" />
@@ -23,6 +23,6 @@
             <TableColumn fx:id="colJobStage" prefWidth="184.79998779296875" text="Stage" />
         </columns>
       </TableView>
-      <Button fx:id="btnMoveToNextStage" layoutX="363.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleMoveStage" text="Move to Next Stage" />
+      <Button fx:id="btnMoveToNextStage" layoutX="338.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleMoveStage" text="Move to Next Stage" />
    </children>
 </AnchorPane>
